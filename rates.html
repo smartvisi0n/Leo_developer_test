@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+
+        ////////////////////////////// Task 1 //////////////////////////////
+        var items = ["Apple", "Apple", "Orange", "Apple"];
+
+        var total = calculate_total(items);
+        alert("Total of shopping cart: " + total);
+
+
+        var offer_total = calculate_offer_total(items);
+        alert("Total of shopping cart with offers: " + offer_total);
+
+
+        /**
+             * Returns calculated total of a shopping cart. 
+             *            
+             * @param {array} items The list of items in shopping cart.
+        */
+        function calculate_total(items) {
+            /// rates is an object to hold unit price of items.
+            var rates = { "Apple": 60, "Orange": 25 };
+            // sum is an integer variable which holds calculated total of shopping cart.
+            var sum = 0;
+            for (var i = 0; i < items.length; i++) {
+
+                var rate = parseInt(rates[items[i]]);
+                sum += rate;
+
+            }//end for-loop
+            sum = parseFloat(sum) / 100;
+            return sum;
+        }//end calculate_total()
+
+
+
+
+        ///////////////////////// Task 2 /////////////////////////////
+        /**
+             * Returns calculated total of a shopping cart with offers. 
+             *            
+             * @param {array} items The list of items in shopping cart.
+        */
+        function calculate_offer_total(items) {
+            /// rates is an object to hold unit price of items.
+            var rates = { "Apple": 60, "Orange": 25 };
+            // sum is an integer variable which holds calculated total of shopping cart.
+            var sum = 0.0;
+            var apples = 0; // number of apples
+            var oranges = 0; // number of oranges
+            var apples_total = 0.0;
+            var oranges_total = 0.0;
+            /////// calculate number of apples and oranges in the cart
+            for (var i = 0; i < items.length; i++) {
+
+                switch (items[i]) {
+                    case "Apple":
+                        apples++;
+                        break;
+                    case "Orange":
+                        oranges++;
+                        break;
+                }
+
+            }//end for-loop
+            var offer_apples = parseInt(apples / 2);
+            var full_price_apple = apples % 2;
+             apples_total = (offer_apples + full_price_apple) * rates.Apple;
+
+            var offer_oranges = parseInt(oranges / 3);
+            var full_price_oranges = oranges % 3;
+            oranges_total = (offer_oranges+full_price_oranges)*rates.Orange;
+
+            sum = parseFloat(apples_total+ oranges_total)/100;
+            
+            return sum;
+
+        }//end calculate_offer_total()
+
+       
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
